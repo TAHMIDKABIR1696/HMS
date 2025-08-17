@@ -59,3 +59,53 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Bullet Frenzy (PyOpenGL)
+
+A minimal PyOpenGL game skeleton demonstrating 3D transforms, perspective projection with `gluPerspective`, camera control via `gluLookAt`, and basic game mechanics (movement, rotation, bullets, enemies, cheat mode) built only with the allowed immediate-mode transformations and camera functions.
+
+### Files
+- `bullet_frenzy.py`: main game file
+- `requirements.txt`: Python deps
+
+### Prerequisites
+You need an OpenGL + GLUT runtime:
+- Linux (Debian/Ubuntu): packages typically `freeglut3`, `libglu1-mesa`, `libgl1-mesa-glx`
+- macOS: install XQuartz and run with an OpenGL-capable Python
+- Windows: standard video drivers; consider `conda` for easy setup
+
+If your environment is system-managed (PEP 668), prefer a virtual environment.
+
+### Setup (venv)
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -U pip wheel setuptools
+pip install -r requirements.txt
+```
+
+If `python3 -m venv` fails, install the platform venv package (e.g., `apt install python3-venv`).
+
+### Run
+```bash
+python bullet_frenzy.py
+```
+
+If running headless CI, you’ll need a virtual X server (e.g., `xvfb-run -s "-screen 0 1280x800x24" python bullet_frenzy.py`).
+
+### Controls
+- Movement: `W` forward, `S` backward
+- Rotate gun: `A` left, `D` right
+- Fire: Left Mouse Button
+- Toggle first/third-person camera: Right Mouse Button
+- Orbit camera (third-person): Arrow Left/Right
+- Camera height: Arrow Up/Down
+- Toggle cheat mode: `C` (auto-rotate; auto-fire on line-of-sight)
+- Toggle auto camera (cheat FPV only): `V`
+- Restart after game over: `R`
+
+### Notes for the assignment
+- Only uses `glTranslatef`, `glRotatef`, `glScalef` (in helpers if you add), `glPushMatrix`, `glPopMatrix`, `gluPerspective`, `gluLookAt`, basic color and primitive drawing. No timers (`glutTimerFunc` is avoided); the idle callback drives updates.
+- Replace `draw_cuboid`, `draw_cylinder`, `draw_sphere` with your template’s provided helpers if required by grading.
+- The grid is generated procedurally from `WORLD_HALF_SIZE` and `GRID_CELL_SIZE` (no hardcode).
+- Cheat mode demonstrates combining rotation + firing + simple line-of-sight using existing functions and a flag.
