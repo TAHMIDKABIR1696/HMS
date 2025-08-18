@@ -15,7 +15,7 @@
                     <a href="{{ route('patient.book-appointment') }}" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-5 px-6 rounded-lg shadow-md transition transform hover:scale-105 text-center">
                         📅 Book Appointment
                     </a>    
-                    <a href="{{ route('patient.medstore') }}" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-5 px-6 rounded-lg shadow-md transition transform hover:scale-105 text-center">
+                    <a href="https://www.lazzpharma.com/" target="_blank" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-5 px-6 rounded-lg shadow-md transition transform hover:scale-105 text-center">
                         💊 Medicine Store
                     </a>
                     <a href="{{ route('patient.ambulance-booking') }}" class="block bg-red-600 hover:bg-red-700 text-white font-semibold py-5 px-6 rounded-lg shadow-md transition transform hover:scale-105 text-center">
@@ -25,6 +25,8 @@
                         📄 Report
                     </a> 
                 </div>
+
+
 
             </div>
         </div>

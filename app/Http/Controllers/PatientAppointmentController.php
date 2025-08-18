@@ -38,4 +38,10 @@ class PatientAppointmentController extends Controller
 
         return redirect()->route('patient.book-appointment')->with('success', 'Appointment booked successfully!');
     }
+
+    public function myAppointments()
+    {
+        $appointments = Appointment::where('patient_id', Auth::id())->latest()->get();
+        return view('patient.my-appointments', compact('appointments'));
+    }
 }

@@ -28,6 +28,8 @@ class Appointment extends Model
         return $this->belongsTo('App\Models\Doctor');
     }
 
+    
+
 
 
     
