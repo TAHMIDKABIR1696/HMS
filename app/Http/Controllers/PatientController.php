@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Appointment; // ✅ Import the model
+use App\Models\Appointment;
+use App\Models\Report;
 
 class PatientController extends Controller
 {
@@ -22,7 +23,6 @@ class PatientController extends Controller
         return view('patient.home', compact('appointments'));
         
     }
-
 
 
 }

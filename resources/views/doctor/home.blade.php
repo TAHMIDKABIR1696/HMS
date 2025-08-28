@@ -12,16 +12,23 @@
                 <h3 class="text-lg font-semibold text-gray-700 mb-6">Quick Actions</h3>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Appointment -->
+                    
+                    <!-- Appointments -->
                     <a href="{{ route('doctor.appointment') }}" 
                        class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-5 px-6 rounded-lg shadow-md transition transform hover:scale-105 text-center">
                         📅 Check Appointments
                     </a>
 
-                    <!-- Prescription -->
+                    <!-- Reports -->
                     <a href="{{ route('doctor.report') }}" 
                        class="block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-5 px-6 rounded-lg shadow-md transition transform hover:scale-105 text-center">
-                        📝 Prescriptions
+                        📑 Reports
+                    </a>
+
+                    <!-- Income -->
+                    <a href="{{ route('doctor.income') }}" 
+                       class="block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-5 px-6 rounded-lg shadow-md transition transform hover:scale-105 text-center">
+                        💰 Income
                     </a>
 
                     <!-- Patient History -->

@@ -8,7 +8,6 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MedController;
 use App\Http\Controllers\AmbulanceBookingController;
-   
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,32 +25,29 @@ Route::middleware(['auth', 'patient'])
     ->prefix('patient')
     ->name('patient.')
     ->group(function () {
-        
         Route::get('/dashboard', [PatientController::class, 'dashboard'])->name('dashboard');
-        Route::get('/book-appointment', [PatientController::class, 'bookAppointment'])->name('book-appointment');
-        Route::get('/ambulance-booking', [PatientController::class, 'ambulanceBooking'])->name('ambulance-booking');
-        Route::get('/report', [PatientController::class, 'seeroprt'])->name('report');
-        Route::get('/home', [PatientController::class, 'home'])->name('home');
+        Route::get('/report', [PatientController::class, 'seeReport'])->name('report');
 
-        // Book appointment form & store
-        Route::get('/book-appointment-form', [PatientAppointmentController::class, 'create'])->name('book-appointment.form');
-        Route::post('/book-appointment-form', [PatientAppointmentController::class, 'store'])->name('book-appointment.store');
+        // Book appointment
+        Route::get('/book-appointment', [PatientAppointmentController::class, 'create'])
+            ->name('book-appointment');   // <-- keep this name so links don't break
+        Route::post('/book-appointment', [PatientAppointmentController::class, 'store'])
+            ->name('book-appointment.store');
 
         // Medicine store
-        Route::get('/medstore', [PatientController::class, 'medStore'])->name('medstore');
-        Route::get('/medicine-store', [App\Http\Controllers\MedController::class, 'index'])->name('medicine.index');
-        Route::post('/medicine-store/purchase', [App\Http\Controllers\MedController::class, 'purchase'])->name('medicine.purchase');
+        Route::get('/medicine-store', [MedController::class, 'index'])->name('medicine.index');
+        Route::post('/medicine-store/purchase', [MedController::class, 'purchase'])->name('medicine.purchase');
 
-        // ✅ Ambulance booking (fixed names)
+        // Ambulance booking
         Route::get('/ambulance-booking', [AmbulanceBookingController::class, 'create'])->name('ambulance-booking');
         Route::post('/ambulance-booking', [AmbulanceBookingController::class, 'store'])->name('ambulance.store');
+
     });
 
 
 
-
         // doctor routes
-        Route::middleware(['auth', 'doctor'])
+Route::middleware(['auth', 'doctor'])
             ->prefix('doctor')
             ->name('doctor.')
             ->group(function () {
@@ -64,13 +60,21 @@ Route::middleware(['auth', 'patient'])
 
                 Route::get('/report', [DoctorController::class, 'report'])->name('report');
                 Route::get('/patienthistory', [DoctorController::class, 'patienthistory'])->name('patienthistory');
-            });
+                Route::get('/income', [DoctorController::class, 'income'])->name('income');
+
+        });
+
+        
  
 
 //admin routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    
-}); 
+    Route::get('/', [AdminController::class, 'home'])->name('dashboard');
+    Route::get('/patients', [AdminController::class, 'patients'])->name('patient');
+    Route::get('/doctors', [AdminController::class, 'doctors'])->name('doctor');
+    Route::get('/ambulance/bookings', [AdminController::class, 'ambulanceBookings'])->name('ambulance.bookings');
+});
+
 
 Route::get('/admin/home', function () {
     return view('admin.home');

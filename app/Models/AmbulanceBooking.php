@@ -13,4 +13,8 @@ class AmbulanceBooking extends Model
         'patient_name', 'phone', 'pickup_area', 'pickup_address',
         'drop_hospital', 'ambulance_type', 'distance_km', 'total_fee'
     ];
+
+    protected $attributes = [
+        'status' => 'pending',
+    ];
 }

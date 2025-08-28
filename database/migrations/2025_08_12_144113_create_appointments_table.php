@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('phone');
             $table->text('message')->nullable();
             $table->timestamps();
+            $table->string('cancellation_reason')->nullable();
+            $table->integer('cancellation_fee')->default(0);
 
             // Foreign keys (assuming users table is for both patients & doctors)
             $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');

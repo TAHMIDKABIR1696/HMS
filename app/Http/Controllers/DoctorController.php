@@ -5,19 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Appointment;
+use App\Models\Report;
+
 
 class DoctorController extends Controller
 {
     // Show all appointments for this doctor
-    public function checkAppointments()
-    {
-        $appointments = Appointment::where('doctor_id', Auth::id())
-            ->orderBy('date', 'asc')
-            ->get();
-
-        return view('doctor.appointments', compact('appointments'));
-    }
-
     public function appointment()
     {
         $appointments = Appointment::where('doctor_id', Auth::id())->latest()->get();
@@ -42,6 +35,30 @@ class DoctorController extends Controller
         $appointment->save();
 
         return back()->with('error', 'Appointment cancelled.');
+    }
+
+    // Income panel
+    public function income()
+    {
+        // Get only approved appointments
+        $appointments = Appointment::where('doctor_id', Auth::id())
+            ->where('status', 'approved')
+            ->get();
+
+        // Each approved appointment = 2000tk
+        $totalIncome = $appointments->count() * 2000;
+
+        return view('doctor.income', compact('appointments', 'totalIncome'));
+    }
+
+    // Patient history (all appointments for this doctor)
+    public function patientHistory()
+    {
+        $appointments = Appointment::where('doctor_id', Auth::id())
+            ->orderBy('date', 'desc')
+            ->get();
+
+        return view('doctor.patienthistory', compact('appointments'));
     }
 
 }
