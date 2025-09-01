@@ -16,10 +16,25 @@ class AmbulanceBookingController extends Controller
 
     // Area → Hospital + Distance
     private $areaToHospital = [
-        'Banani'      => ['hospital' => 'United Hospital', 'distance' => 8],
-        'Dhanmondi'   => ['hospital' => 'Labaid Hospital', 'distance' => 6],
-        'Bashundhara' => ['hospital' => 'Apollo Hospital', 'distance' => 12],
-        'Panthapath'  => ['hospital' => 'Square Hospital', 'distance' => 5],
+        'Banani' => [
+            ['name' => 'United Hospital', 'distance' => 8],
+            ['name' => 'Banani General Hospital', 'distance' => 7],
+            ['name' => 'Banani Specialized Clinic', 'distance' => 9],
+            // add more hospitals here
+        ],
+        'Dhanmondi' => [
+            ['name' => 'Labaid Hospital', 'distance' => 6],
+            ['name' => 'Popular Diagnostic', 'distance' => 7],
+            ['name' => 'Ibn Sina Hospital', 'distance' => 5],
+        ],
+        'Bashundhara' => [
+            ['name' => 'Apollo Hospital', 'distance' => 12],
+            ['name' => 'Evercare Hospital', 'distance' => 11],
+        ],
+        'Panthapath' => [
+            ['name' => 'Square Hospital', 'distance' => 5],
+            ['name' => 'Samorita Hospital', 'distance' => 6],
+        ],
     ];
 
     public function create()

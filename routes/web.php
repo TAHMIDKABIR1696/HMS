@@ -10,7 +10,9 @@ use App\Http\Controllers\MedController;
 use App\Http\Controllers\AmbulanceBookingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\PatientProfileController;
+use App\Http\Controllers\DoctorProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -42,11 +44,16 @@ Route::middleware(['auth', 'patient'])
         Route::get('/ambulance-booking', [AmbulanceBookingController::class, 'create'])->name('ambulance-booking');
         Route::post('/ambulance-booking', [AmbulanceBookingController::class, 'store'])->name('ambulance.store');
 
+        Route::get('/profile', [PatientProfileController::class, 'edit'])->name('profile');
+        Route::post('/profile', [PatientProfileController::class, 'update'])->name('profile.update');
+        Route::get('/patient/reports', [ReportController::class, 'patientReports'])->name('reports');
+
+
     });
 
 
 
-        // doctor routes
+// doctor routes
 Route::middleware(['auth', 'doctor'])
             ->prefix('doctor')
             ->name('doctor.')
@@ -58,9 +65,14 @@ Route::middleware(['auth', 'doctor'])
                 Route::post('/appointment/{id}/approve', [DoctorController::class, 'approve'])->name('appointment.approve');
                 Route::post('/appointment/{id}/cancel', [DoctorController::class, 'cancel'])->name('appointment.cancel');
 
-                Route::get('/report', [DoctorController::class, 'report'])->name('report');
                 Route::get('/patienthistory', [DoctorController::class, 'patienthistory'])->name('patienthistory');
                 Route::get('/income', [DoctorController::class, 'income'])->name('income');
+
+                Route::get('/doctor/reports', [ReportController::class, 'doctorReports'])->name('reports');
+                Route::get('/doctor/reports/create/{appointment}', [ReportController::class, 'create'])->name('reports.create');
+                Route::post('/doctor/reports/store/{appointment}', [ReportController::class, 'store'])->name('reports.store');
+                Route::get('/profile', [DoctorProfileController::class, 'edit'])->name('profile');
+                Route::post('/profile', [DoctorProfileController::class, 'update'])->name('profile.update');
 
         });
 

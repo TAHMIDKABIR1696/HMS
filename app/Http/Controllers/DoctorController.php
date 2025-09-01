@@ -60,5 +60,30 @@ class DoctorController extends Controller
 
         return view('doctor.patienthistory', compact('appointments'));
     }
+    public function createReport($appointmentId)
+    {
+        $appointment = Appointment::with('patient')->findOrFail($appointmentId);
+
+        // Only assigned doctor can write report
+        if ($appointment->doctor_id != Auth::id()) {
+            abort(403);
+        }
+
+        return view('doctor.report-create', compact('appointment'));
+    }
+
+    public function storeReport(Request $request, $appointmentId)
+    {
+        $appointment = Appointment::findOrFail($appointmentId);
+
+        Report::create([
+            'doctor_id' => Auth::id(),
+            'patient_id' => $appointment->patient_id, // must be from users table
+            'appointment_id' => $appointment->id,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('doctor.report')->with('success', 'Report saved successfully!');
+    }
 
 }
