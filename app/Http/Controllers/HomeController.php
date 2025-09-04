@@ -10,20 +10,20 @@ class HomeController extends Controller
 {
     public function redirect()
     {
-        if (Auth::id())
+        if (Auth::id())                                            //1
         {
-            if (Auth::user()->usertype == 'patient') {
-                return view('patient.home');
+            if (Auth::user()->usertype == 'patient') {             //2
+                return view('patient.home');                       //3
             }
-            elseif (Auth::user()->usertype == 'doctor') {
-                return view('doctor.home');
+            elseif (Auth::user()->usertype == 'doctor') {          //4
+                return view('doctor.home');                        //5
             }
-            elseif (Auth::user()->usertype == 'admin') {
-                return view('admin.home');
+            elseif (Auth::user()->usertype == 'admin') {           //6
+                return view('admin.home');                         //7
             }
         }
-        else {
-            return redirect()->back();
+        else {                                                     //8
+            return redirect()->back();                             //9
         }
     }
 }

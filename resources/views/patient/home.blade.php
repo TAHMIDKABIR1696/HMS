@@ -399,7 +399,7 @@
             
             <ul class="nav-links">
                 <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="{{ route('patient.profile') }}"><i class="fas fa-calendar-check"></i> Profile</a></li>
+                <li><a href="{{ route('patient.profile') }}"><i class="fas fa-user"></i> Profile</a></li>
                 <li>
                     <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

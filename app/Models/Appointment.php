@@ -29,6 +29,11 @@ class Appointment extends Model
     }
 
     
+    public function report()
+    {
+        return $this->hasOne(Report::class);
+    }
+
 
 
 

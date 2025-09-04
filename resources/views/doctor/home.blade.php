@@ -462,13 +462,13 @@
                             <p>Access patient records</p>
                         </a>
 
-                        <a href="{{ route('doctor.reports') }}" class="action-card">
+                        <!-- <a href="{{ route('doctor.reports') }}" class="action-card">
                             <div class="action-icon">
                                 <i class="fas fa-notes-medical"></i>
                             </div>
                             <h4>Reports</h4>
                             <p>Write and manage patient reports</p>
-                        </a>
+                        </a> -->
                     
                     </div>
                 </div>

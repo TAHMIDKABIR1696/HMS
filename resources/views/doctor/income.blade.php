@@ -18,44 +18,181 @@
     --white: #ffffff;
     --income-color: #4caf50;
     --income-bg: #e8f5e9;
+    --sidebar-width: 280px;
+    --header-height: 80px;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Poppins', sans-serif; background:#f0f7f4; color:var(--text-dark); line-height:1.6; }
-.app-container { max-width:1200px; margin:30px auto; background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(46,125,50,0.15); }
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    font-family: 'Poppins', sans-serif; 
+    background: #f0f7f4; 
+    color: var(--text-dark); 
+    line-height: 1.6; 
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container { 
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
 
 /* Header */
-.header { background:linear-gradient(to right,var(--primary),var(--primary-dark)); padding:25px 30px; color:var(--white); }
-.header h2 { font-size:28px; font-weight:600; }
-
-/* Layout */
-.main-layout { display:flex; gap:30px; }
-
-/* Sidebar */
-.sidebar { width:260px; background:var(--primary-dark); color:var(--white); padding:25px 0; border-radius:16px; }
-.logo { padding:0 25px 25px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; gap:12px; }
-.logo i { font-size:28px; }
-.logo h1 { font-size:22px; font-weight:600; }
-.nav-links { list-style:none; padding:0 15px; }
-.nav-links li { margin-bottom:10px; }
-.nav-links a { display:flex; align-items:center; gap:12px; padding:14px 15px; color:rgba(255,255,255,0.9); text-decoration:none; border-radius:8px; transition:all 0.3s; }
-.nav-links a:hover, .nav-links a.active { background-color: rgba(255,255,255,0.1); color: var(--white); }
-.nav-links i { width:20px; text-align:center; }
-
-/* Content */
-.content-area { flex:1; padding:30px; }
-.form-container { background:var(--white); border-radius:12px; padding:30px; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
-.alert-success { background-color: var(--primary-bg); color: var(--primary-dark); padding:15px 20px; border-radius:10px; margin-bottom:25px; display:flex; align-items:center; gap:12px; border-left:4px solid var(--primary); }
-.alert-success i { font-size:20px; }
-
-/* Income Table Styling */
-.income-table-container {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    margin-top: 20px;
+.header { 
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+    height: var(--header-height);
+    color: var(--white); 
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
 }
 
+.header h2 { 
+    font-size: 28px; 
+    font-weight: 600; 
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Layout */
+.main-layout { 
+    display: flex; 
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar { 
+    width: var(--sidebar-width); 
+    background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
+    color: var(--white); 
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.logo { 
+    padding: 30px 25px; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+}
+
+.logo i { 
+    font-size: 32px; 
+    color: #a5d6a7;
+}
+
+.logo h1 { 
+    font-size: 24px; 
+    font-weight: 600; 
+}
+
+.nav-links { 
+    list-style: none; 
+    padding: 25px 15px; 
+    flex: 1;
+}
+
+.nav-links li { 
+    margin-bottom: 8px; 
+}
+
+.nav-links a { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    padding: 14px 15px; 
+    color: rgba(255, 255, 255, 0.9); 
+    text-decoration: none; 
+    border-radius: 8px; 
+    transition: all 0.3s; 
+}
+
+.nav-links a:hover, 
+.nav-links a.active { 
+    background-color: rgba(255, 255, 255, 0.15); 
+    color: var(--white); 
+    transform: translateX(5px);
+}
+
+.nav-links i { 
+    width: 20px; 
+    text-align: center; 
+    font-size: 18px;
+}
+
+/* Content */
+.content-area { 
+    flex: 1; 
+    padding: 30px; 
+    overflow-y: auto;
+    background: #f5f9f6;
+}
+
+.content-header {
+    margin-bottom: 25px;
+}
+
+.content-header h1 {
+    font-size: 28px;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.content-header p {
+    color: var(--text-light);
+    font-size: 16px;
+}
+
+/* Card Styling */
+.card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Income Table Styling */
 .income-table {
     width: 100%;
     border-collapse: collapse;
@@ -66,25 +203,26 @@ body { font-family:'Poppins', sans-serif; background:#f0f7f4; color:var(--text-d
     background-color: var(--primary-bg);
     color: var(--primary-dark);
     text-align: left;
-    padding: 16px;
+    padding: 18px;
     font-weight: 600;
     border-bottom: 2px solid var(--primary-light);
 }
 
 .income-table td {
-    padding: 16px;
+    padding: 18px;
     border-bottom: 1px solid #eaeaea;
+    transition: background-color 0.2s;
 }
 
-.income-table tr:hover {
+.income-table tr:hover td {
     background-color: #f7fbf8;
 }
 
 /* Status badges */
 .status-badge {
-    padding: 6px 12px;
+    padding: 8px 16px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     display: inline-block;
 }
@@ -98,65 +236,200 @@ body { font-family:'Poppins', sans-serif; background:#f0f7f4; color:var(--text-d
 .amount {
     font-weight: 600;
     color: var(--income-color);
+    font-size: 16px;
 }
 
 /* Total Income */
 .total-income {
-    background: linear-gradient(to right, var(--primary-light), var(--primary));
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
     color: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 25px;
+    padding: 25px 30px;
+    border-radius: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 5px 15px rgba(46,125,50,0.2);
+    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.2);
+    margin-top: 30px;
+    transition: transform 0.3s;
+}
+
+.total-income:hover {
+    transform: scale(1.02);
 }
 
 .total-income h3 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .total-amount {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Empty state */
 .empty-state {
     text-align: center;
-    padding: 40px;
+    padding: 60px 40px;
     color: var(--text-light);
 }
 
 .empty-state i {
-    font-size: 48px;
-    margin-bottom: 15px;
+    font-size: 64px;
+    margin-bottom: 20px;
     color: #cfd8dc;
 }
 
+.empty-state h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #90a4ae;
+}
+
+.empty-state p {
+    font-size: 16px;
+}
+
 /* Responsive */
-@media (max-width:900px) { 
-    .main-layout { flex-direction:column; } 
-    .sidebar { width:100%; margin-bottom:20px; } 
+@media (max-width: 992px) { 
+    .sidebar {
+        width: 80px;
+    }
+    
+    .logo h1, .nav-links span {
+        display: none;
+    }
+    
+    .logo {
+        justify-content: center;
+        padding: 25px 15px;
+    }
+    
+    .nav-links {
+        padding: 25px 10px;
+    }
+    
+    .nav-links a {
+        justify-content: center;
+        padding: 16px;
+    }
+    
+    .content-area {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) { 
+    .header {
+        padding: 0 20px;
+        height: 70px;
+    }
+    
+    .header h2 {
+        font-size: 22px;
+    }
+    
+    .main-layout {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        order: 2;
+    }
+    
+    .logo {
+        padding: 20px;
+        justify-content: center;
+    }
+    
+    .nav-links {
+        display: flex;
+        padding: 10px;
+        justify-content: center;
+    }
+    
+    .nav-links li {
+        margin-bottom: 0;
+        margin-right: 5px;
+    }
+    
+    .nav-links a {
+        padding: 12px 15px;
+    }
+    
+    .content-area {
+        order: 1;
+        padding: 20px;
+        overflow-y: visible;
+        height: auto;
+    }
+    
     .income-table {
         display: block;
         overflow-x: auto;
     }
-}
-@media (max-width:600px) { 
-    body { padding:10px; } 
-    .header { padding:15px 20px; } 
-    .content-area { padding:20px; } 
-    .income-table-container { padding:15px; }
-    .income-table th, 
-    .income-table td { padding: 12px 8px; }
+    
     .total-income {
         flex-direction: column;
         text-align: center;
-        gap: 10px;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .total-income h3 {
+        font-size: 18px;
+    }
+    
+    .total-amount {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 576px) { 
+    body { 
+        font-size: 14px;
+    }
+    
+    .header {
+        padding: 0 15px;
+    }
+    
+    .header h2 {
+        font-size: 20px;
+    }
+    
+    .content-area {
+        padding: 15px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .income-table th, 
+    .income-table td { 
+        padding: 12px 10px; 
+        font-size: 14px;
+    }
+    
+    .empty-state {
+        padding: 40px 20px;
+    }
+    
+    .empty-state i {
+        font-size: 48px;
+    }
+    
+    .empty-state h3 {
+        font-size: 18px;
     }
 }
 </style>
@@ -164,7 +437,7 @@ body { font-family:'Poppins', sans-serif; background:#f0f7f4; color:var(--text-d
 <body>
 <div class="app-container">
     <div class="header">
-        <h2>💰 Income Summary</h2>
+        <h2><i class="fas fa-money-bill-wave"></i> Income Summary</h2>
     </div>
     <div class="main-layout">
         <!-- Sidebar -->
@@ -174,11 +447,11 @@ body { font-family:'Poppins', sans-serif; background:#f0f7f4; color:var(--text-d
                 <h1>EcoCare HMS</h1>
             </div>
             <ul class="nav-links">
-                <li><a href="{{ route('doctor.home') }}"><i class="fas fa-home"></i> Dashboard</a></li>
-                
+                <li><a href="{{ route('doctor.home') }}" ><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="#" class="active"><i class="fas fa-file-medical"></i>Income</a></li>
                 <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
                 </li>
@@ -187,16 +460,26 @@ body { font-family:'Poppins', sans-serif; background:#f0f7f4; color:var(--text-d
 
         <!-- Main Content -->
         <div class="content-area">
+            <div class="content-header">
+                <h1><i class="fas fa-money-bill-trend-up"></i> Earnings Overview</h1>
+                <p>View your approved appointments and income details</p>
+            </div>
+            
             <!-- Income Table -->
-            <div class="income-table-container">
-                <h3 style="color: var(--primary-dark); margin-bottom: 20px;">
-                    <i class="fas fa-money-bill-wave"></i> Approved Appointments & Income
-                </h3>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-money-bill-wave"></i> Approved Appointments & Income</h3>
+                    <div class="header-actions">
+                        <button class="btn-icon"><i class="fas fa-download"></i></button>
+                        <button class="btn-icon"><i class="fas fa-print"></i></button>
+                    </div>
+                </div>
                 
                 <table class="income-table">
                     <thead>
                         <tr>
                             <th>Patient Name</th>
+                            <th>Date</th>
                             <th>Status</th>
                             <th>Amount (৳)</th>
                         </tr>
@@ -205,16 +488,17 @@ body { font-family:'Poppins', sans-serif; background:#f0f7f4; color:var(--text-d
                         @forelse($appointments as $appointment)
                             <tr>
                                 <td>{{ $appointment->full_name }}</td>
+                                <td>Oct 15, 2023</td>
                                 <td>
                                     <span class="status-badge status-approved">
-                                        Approved
+                                        <i class="fas fa-check-circle"></i> Approved
                                     </span>
                                 </td>
                                 <td class="amount">2000 tk</td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                                     <div class="empty-state">
                                         <i class="fas fa-calendar-times"></i>
                                         <h3>No approved appointments yet</h3>
@@ -229,7 +513,7 @@ body { font-family:'Poppins', sans-serif; background:#f0f7f4; color:var(--text-d
 
             <!-- Total Income -->
             <div class="total-income">
-                <h3>Total Income:</h3>
+                <h3><i class="fas fa-wallet"></i> Total Income:</h3>
                 <div class="total-amount">৳ {{ $totalIncome }} tk</div>
             </div>
         </div>
@@ -238,12 +522,29 @@ body { font-family:'Poppins', sans-serif; background:#f0f7f4; color:var(--text-d
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Sidebar active link
-    document.querySelectorAll('.nav-links a').forEach(item=>{
-        item.addEventListener('click', function(){
-            document.querySelectorAll('.nav-links a').forEach(i=>i.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelectorAll('.nav-links a').forEach(i => i.classList.remove('active'));
             this.classList.add('active');
         });
     });
+    
+    // Simulate loading animation
+    const cards = document.querySelectorAll('.card, .total-income');
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+    });
+    
+    setTimeout(() => {
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 150);
+        });
+    }, 300);
 });
 </script>
 </body>

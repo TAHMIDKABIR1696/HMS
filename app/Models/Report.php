@@ -12,20 +12,16 @@ class Report extends Model
     protected $fillable = [
         'doctor_id',
         'patient_id',
-        'appointment_id',
         'report_text',
     ];
 
-    public function doctor() {
+    public function doctor()
+    {
         return $this->belongsTo(User::class, 'doctor_id');
     }
 
-    public function patient() {
+    public function patient()
+    {
         return $this->belongsTo(User::class, 'patient_id');
     }
-
-    public function appointment() {
-        return $this->belongsTo(Appointment::class);
-    }
 }
-

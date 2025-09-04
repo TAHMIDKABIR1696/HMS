@@ -69,8 +69,8 @@ Route::middleware(['auth', 'doctor'])
                 Route::get('/income', [DoctorController::class, 'income'])->name('income');
 
                 Route::get('/doctor/reports', [ReportController::class, 'doctorReports'])->name('reports');
-                Route::get('/doctor/reports/create/{appointment}', [ReportController::class, 'create'])->name('reports.create');
-                Route::post('/doctor/reports/store/{appointment}', [ReportController::class, 'store'])->name('reports.store');
+                Route::get('/doctor/reports/create', [ReportController::class, 'create'])->name('reports.create');
+                Route::post('/doctor/reports', [ReportController::class, 'store'])->name('reports.store');
                 Route::get('/profile', [DoctorProfileController::class, 'edit'])->name('profile');
                 Route::post('/profile', [DoctorProfileController::class, 'update'])->name('profile.update');
 
