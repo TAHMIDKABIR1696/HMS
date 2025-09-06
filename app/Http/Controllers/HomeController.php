@@ -5,25 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Helpers\Singleton; 
 
 class HomeController extends Controller
 {
     public function redirect()
     {
-        if (Auth::id())                                            //1
+        
+        $config = Singleton::getInstance();
+
+
+        if (Auth::id())                                            
         {
-            if (Auth::user()->usertype == 'patient') {             //2
-                return view('patient.home');                       //3
+            if (Auth::user()->usertype == 'patient') {             
+                return view('patient.home');                       
             }
-            elseif (Auth::user()->usertype == 'doctor') {          //4
-                return view('doctor.home');                        //5
+            elseif (Auth::user()->usertype == 'doctor') {         
+                return view('doctor.home');                        
             }
-            elseif (Auth::user()->usertype == 'admin') {           //6
-                return view('admin.home');                         //7
+            elseif (Auth::user()->usertype == 'admin') {           
+                return view('admin.home');                         
             }
         }
-        else {                                                     //8
-            return redirect()->back();                             //9
+        else {                                                    
+            return redirect()->back();                             
         }
     }
 }
